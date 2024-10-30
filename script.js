@@ -40,7 +40,6 @@ function fetchPhotoAPI_UsingFetch(searchword) {
     };
     fetch(url + "?" + queryParam, requestOptions)
         .then((response) => {
-            if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then((data) => {
@@ -68,16 +67,11 @@ async function fetchPhotoAPI_UsingFetchAsyncAwait(searchword) {
             "Authorization": "Client-ID " + Key
         }
     };
-
-    try {
-        const response = await fetch(url + "?" + queryParam, requestOptions); // Wait until the request completes.
-        if (!response.ok) throw new Error('Network response was not ok');
+        const response = await fetch(url + "?" + queryParam, requestOptions);
         
-        const data = await response.json(); // Wait until the response completes
+        const data = await response.json();
         processResponse(data);
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
+    
 }
 
 
